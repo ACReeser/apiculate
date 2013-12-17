@@ -16,6 +16,8 @@ Apiculate is an HTML5 API documentation viewer that allows you to write up your 
 
 ## Endpoint Format
 
+For the complete documentation see [the ghpage](http://acreeser.github.io/apiculate)
+
 ```
 apiculate = {
   endpoints: [

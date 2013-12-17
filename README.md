@@ -16,7 +16,8 @@ Apiculate is an HTML5 API documentation viewer that allows you to write up your 
 
 ## Endpoint Format
 
-'''apiculate = {
+```
+apiculate = {
   endpoints: [
     {
       method: "GET",
@@ -30,7 +31,8 @@ Apiculate is an HTML5 API documentation viewer that allows you to write up your 
       ]
     }
   ]
-}'''
+}
+```
 
 ## Testing
 
@@ -38,7 +40,7 @@ Jasmine testing is planned
 
 ## Deploying
 
-Apiculate is a set of static files. Just host them on any server (_something like Mongoose_), add your own JSON via script ~~or by specifying a server endpoint~~ (coming soon!) and apiculate will render the view.
+Apiculate is a set of static files. Just host them on any server (like Mongoose), add your own JSON via script ~~or by specifying a server endpoint~~ (coming soon!) and apiculate will render the view.
 
 
 ## Contributing changes

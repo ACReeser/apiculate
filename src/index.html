@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>apiculate</title>
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script> -->
+	<script src="http://code.angularjs.org/angular-1.0.1.js"></script>
+	<script src="/js/apiculate.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<link rel="stylesheet" href="/css/apiculate.css">
+</head>
+<body ng-app="apiculate">
+	<div ng-controller="MainCtrl" class="container">
+	  <div class="row tools">
+		<div class="col-md-5 input-group">
+		 <input type="text" class="form-control" data-ng-model="query">	
+		 <span class="input-group-addon">
+		   <i class="fa fa-search"></i>
+		 </span>
+		</div>
+		<div class="filters-container col-md-4">
+			<div class="panel panel-info filters">
+			<a href="" class="btn btn-info" data-toggle="button" ng-click="showFilters = !showFilters"><i class="fa fa-filter"></i></a>
+			<div  ng-class="{'filter-out': showFilters}" class="controls">
+			  <div class="controls-inner btn-group">
+				<div class="dropdown btn-group dd-token">
+				  <a class="btn btn-default" data-toggle="dropdown">
+				    <i class="fa fa-key" ng-show="tokenFilter"></i>
+				    <i class="fa fa-shield" ng-show="tokenFilter == false"></i>
+				    <span ng-show="tokenFilter == undefined"><i class="fa fa-question" ></i><i class="fa fa-key" ></i></span>
+					&nbsp;<i class="caret"></i>
+				  </a>
+				  <ul class="dropdown-menu">
+					<li><a ng-click="tokenFilter = true"><i class="fa fa-key"></i> Token Access</a></li>
+					<li><a ng-click="tokenFilter = false"><i class="fa fa-shield"></i> No Token Access</a></li>
+					<li><a ng-click="tokenFilter = undefined">Either</a></li>
+				  </ul>
+			    </div>
+				<div class="dropdown btn-group dd-auth">
+				  <a class="btn btn-default" data-toggle="dropdown">
+				    <i class="fa fa-lock" ng-show="authFilter"></i>
+				    <i class="fa fa-unlock" ng-show="authFilter == false"></i>
+				    <span ng-show="authFilter == undefined"><i class="fa fa-question" ></i><i class="fa fa-lock" ></i></span>
+					&nbsp;<i class="caret"></i>
+				  </a>
+				  <ul class="dropdown-menu">
+					<li><a ng-click="authFilter = true"><i class="fa fa-lock"></i> Req. Auth</a></li>
+					<li><a ng-click="authFilter = false"><i class="fa fa-unlock"></i> No Auth</a></li>
+					<li><a ng-click="authFilter = undefined">Either</a></li>
+				  </ul>
+			    </div>
+			    <div class="dropdown btn-group dd-method">
+				  <a class="btn btn-default" data-toggle="dropdown"><i class="fa fa-bolt"></i>&nbsp;{{methodFilter.toUpperCase()}}&nbsp;<i class="caret"></i></a>
+				  <ul class="dropdown-menu">
+					<li><a ng-click="methodFilter = 'all'">All</a></li>
+					<li><a ng-click="methodFilter = 'get'">GET</a></li>
+					<li><a ng-click="methodFilter = 'post'">POST</a></li>
+					<li><a ng-click="methodFilter = 'put'">PUT</a></li>
+					<li><a ng-click="methodFilter = 'delete'">DELETE</a></li>
+					<li><a ng-click="methodFilter = 'head'">HEAD</a></li>
+				  </ul>
+			    </div>
+			  </div>
+		    </div>			
+	      </div>
+		</div>
+		
+	    <div class="pull-right btn-group">
+		  <!--a ng-click="group = !group" data-toggle="button" class="btn btn-default">
+			<span ng-show="group" ><i class="fa fa-sitemap"></i>&nbsp;Grouped</span>
+			<span ng-show="!group"><i class="fa fa-square"></i>&nbsp;Ungrouped</span>
+		  </a-->
+		  <a ng-click="hideAll(true)" class="btn btn-default">
+		    <i class="fa fa-compress"></i>&nbsp;Collapse All
+		  </a>
+		  <a ng-click="hideAll(false)" class="btn btn-default">
+		    <i class="fa fa-expand"></i>&nbsp;Expand All
+		  </a>
+		</div>
+	  </div>
+	  <div ng-repeat="endpoint in endpoints | filter:filter">
+		  <div endpoint="endpoint" class="endpoint">
+			  <div class="">
+				<h3 class="row">
+				  <span class="col-md-1">
+				    <i class="auth fa" ng-class="{'fa-lock': endpoint.auth, 'fa-unlock': !endpoint.auth}"></i> 
+				    <i class="token" ng-class="{'fa fa-key': endpoint.token}"></i> 
+				  </span>
+				  <span class="col-md-9">{{endpoint.method}} {{endpoint.viewUrl}}
+					<span ng-show="endpoint.params" class="params">?<span ng-repeat="param in endpoint.params | filter:paramFilter" >{{param.key}}={{param.example}}<span ng-show="!$last">&</span></span>
+					</span>
+				  </span>	
+				  <div class="pull-right">
+					  <span class="btn btn-default" ng-click="call()" ng-show="endpoint.method.toLowerCase() == 'get'"><i class="fa fa-cloud-upload"></i> Call</span>
+					  <span class="btn btn-default" ng-click="endpoint.hide = !endpoint.hide"><i class="fa fa-eye" ng-show="endpoint.hide"></i><i class="fa fa-eye-slash" ng-show="!endpoint.hide"></i></span>
+				  </div>
+				</h3>	
+				<div class="endpoint-content row" ng-hide="endpoint.hide">
+					<div ng-class="{'col-md-10': !endpoint.calling || !endpoint.sampleResponse, 'col-md-6': endpoint.calling || endpoint.sampleResponse }">
+					  <div class="panel panel-primary" ng-show="endpoint.description">
+							<div class="panel-body">{{endpoint.description}}</div>
+						</div>
+					  <table ng-show="endpoint.pathParams.length > 0" class="row paths table">
+						  <thead>
+							  <tr>
+								  <th>Path Segment</th>
+								  <th>Example</th>
+								  <th>Description</th>
+							  </tr>
+						  </thead>
+						  <tbody>
+							  <tr ng-repeat="path in endpoint.pathParams">
+								  <td>{{path.key}}</td>
+								  <td>
+									  <input type="text" ng-model="path.example" ng-change="refreshUrl()" ng-hide="path.type == 'Number'"/>
+									  <input type="number" ng-model="path.example" ng-change="refreshUrl()"  ng-show="path.type == 'Number'"/>
+								  </td>
+								  <td class="desc">{{path.description}}</td>
+							  </tr>
+						  </tbody>
+					  </table>
+					  <table ng-show="endpoint.params.length" class="row table">
+					  <thead>
+						  <tr>
+							<td></td>
+							  <th>Query Param</th>
+							  <th>Type</th>
+							  <th>Example</th>
+							  <th>Description</th>
+						  </tr>
+					  </thead>
+					  <tbody>
+						  <tr ng-repeat="param in endpoint.params">
+						      <td><i class="fa fa-question" ng-show="param.optional"></i></td>
+							  <td>{{param.key}}</td>
+							  <td>{{param.type}}</td>
+							  <td>
+								  <input type="text" ng-show="param.type == 'String'" ng-model="param.example"/>
+								  <input type="number" ng-show="param.type == 'Number'" ng-model="param.example"/>
+								  <input type="checkbox" ng-show="param.type == 'Boolean'" ng-model="param.example"/>
+								  <div class="btn-group" ng-show="param.type == 'Array'">
+								  	<a data-toggle="dropdown" class="btn btn-default dropdown-toggle">{{param.example}}&nbsp;<span class="caret"></span></a>
+								  	<ul class="dropdown-menu" role="menu">
+										<li ng-repeat="val in param.values">
+											<a ng-click="param.example = val">{{val}}</a>
+										</li>
+									</ul>
+								  </div>
+								  <i class="fa fa-hdd-o" ng-show="param.hasDefault && param.example != param.apiDefault" ng-click="param.example = param.apiDefault"></i>
+							  </td>
+							  <td class="desc">{{param.description}}</td>
+						  </tr>
+					  </tbody>
+				    </table>
+					</div>
+					<div class="col-md-6" ng-show="!endpoint.calling && endpoint.sampleResponse">
+						<h4>Sample Response</h4>
+						<div class="row well">
+							<p ng-repeat="head in endpoint.sampleResponse.headers" class="col-md-12">
+								<code>{{head}}</code>
+							</p>
+						</div>
+						<div class="row col-md-12">
+							<code>{{endpoint.sampleResponse.body}}</code>
+						</div>
+					</div>
+					<div class="col-md-6" ng-show="endpoint.calling">
+						<div class="col-md-12">					
+							<small>{{endpoint.callUrl}} <span ng-show="endpoint.rawStatus">returned {{endpoint.rawStatus}}</span></small>						
+							<div class="pull-right">
+								<a ng-click="endpoint.raw = !endpoint.raw" class="btn btn-default">
+									<i class="fa fa-code" ng-show="!endpoint.raw"></i>
+									<i class="fa fa-desktop" ng-show="endpoint.raw"></i>
+									&nbsp;
+									<span ng-show="!endpoint.raw">Show raw</span>
+									<span ng-show="endpoint.raw">Show view</span>
+								</a>
+								<a ng-click="endpoint.calling = false" class="btn btn-default"><i class="fa fa-times"></i></a>
+							</div>
+						</div>
+						<div ng-hide="endpoint.raw">
+							<iframe src="{{endpoint.callUrl}}" style="width:100%;" height="300" frameborder="0"></iframe>
+						</div>
+						<div ng-show="endpoint.raw">
+							<p>{{endpoint.rawResponse}}</p>
+							<div class="alert alert-error" ng-show="endpoint.rawError">
+								<strong>{{endpoint.rawStatus}}</strong>
+								{{endpoint.rawError}}
+							</div>
+						</div>
+					</div>	
+				  </div>              
+			  </div>
+		  </div>
+	  </div>
+	</div>
+</body>
+</html>

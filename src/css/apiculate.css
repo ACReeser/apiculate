@@ -1,0 +1,132 @@
+html{
+	height: 100%;
+}
+body{
+	height: 101%;
+	padding:4% 8% 8% 8%;
+}
+
+.endpoint h3{ 
+	font-size: 2em;
+	position:relative;
+}
+.auth, .token{
+	display:inline-block;
+	min-width:16px;
+	font-size:.5em;
+}
+
+section{
+	margin-left:42px;
+}
+
+h3.row{
+	background-color: #E8F6FF;
+	padding: 10px;
+}
+
+.params{ opacity:.75; font-size:.75em;}
+
+.endpoint-content{
+    margin:15px 0 0 15px;
+}
+
+.desc{ font-size:.8em;}
+
+.paths{ margin-bottom: 20px;}
+
+.panel.filters{
+	background-color:#bce8f1;
+	padding-left:0px;
+	height:35px;
+}
+.filters, .filters-container{
+	display:inline-block;
+}
+.filters .controls{
+	display:inline-block;
+	position:relative;
+	width:0;
+  -webkit-transition: width .25s ease-in .25s;
+     -moz-transition: width .25s ease-in .25s;
+       -o-transition: width .25s ease-in .25s;
+          transition: width .25s ease-in .25s;
+		  
+}
+.controls.filter-out{
+	width: 228px;
+  -webkit-transition: width .25s ease-in;
+     -moz-transition: width .25s ease-in;
+       -o-transition: width .25s ease-in;
+          transition: width .25s ease-in;
+}
+.controls .dropdown {
+	display:inline-block;
+	opacity: 0;
+}
+
+.controls .dropdown.dd-token{
+  -webkit-transition: opacity .15s ease;
+     -moz-transition: opacity .15s ease;
+       -o-transition: opacity .15s ease;
+          transition: opacity .15s ease;
+}
+.controls .dropdown.dd-auth{
+  -webkit-transition: opacity .2s ease;
+     -moz-transition: opacity .2s ease;
+       -o-transition: opacity .2s ease;
+          transition: opacity .2s ease;
+}
+.controls .dropdown.dd-method{
+  -webkit-transition: opacity .2s ease;
+     -moz-transition: opacity .2s ease;
+       -o-transition: opacity .2s ease;
+          transition: opacity .2s ease;
+}
+
+
+.controls.filter-out .dropdown{
+  -webkit-transition: opacity .25s ease-in .15s;
+     -moz-transition: opacity .25s ease-in .15s;
+       -o-transition: opacity .25s ease-in .15s;
+          transition: opacity .25s ease-in .15s;
+	opacity: 1;
+}
+.controls-inner{
+	position:absolute;
+	right:2px;
+	top:-19px;
+}
+.controls-inner .btn{
+	padding: 4px 12px;
+}
+
+.btn-info{
+	width:100%;
+	max-width:41px;
+}
+.btn-info.active{
+	width:41px;
+}
+
+/* .call-btn{
+    padding:10px;
+    cursor:pointer;
+    border-radius:4px;
+    border:1px solid #ddd;
+    float:right;
+    font-size:.5em;
+    margin-right:30px;
+} */
+
+@media (min-width: 1400px){
+	.container{
+		width: 1370px
+	}
+}
+
+.fa-hdd-o{
+	cursor:pointer;
+}
+
+

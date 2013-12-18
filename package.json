@@ -1,0 +1,30 @@
+{
+  "name": "apiculate",
+  "version": "0.2.0",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-contrib-uglify": "~0.2.2"
+  },
+  "license": "MIT",
+  "author": "Alex C Reeser <alexcreeser@gmail.com> (alexreeser.me)",
+  "readmeFilename": "README.md",
+  "gitHead": "4486d28a1424c9c321171c8344b4e8691592fa6f",
+  "description": "apiculate\r =========",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "test"
+  },
+  "homepage": "http://acreeser.github.io/apiculate/",
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/ACReeser/apiculate.git"
+  },
+  "keywords": [
+    "api",
+    "search",
+    "live",
+    "example",
+    "documentation"
+  ]
+}

@@ -2,6 +2,7 @@
 module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   
   // Project configuration.
@@ -32,7 +33,15 @@ module.exports = function(grunt) {
         src: '<%= concat.dist.dest %>',
         dest: 'dist/<%= pkg.name %>.min.js'
       }
-    },
+    },cssmin: {
+	  minify: {
+		expand: true,
+		cwd: 'src/css/',
+		src: ['*.css', '!*.min.css'],
+		dest: 'dist/',
+		ext: '.min.css'
+	  }
+	},
     gruntfile: {
         src: 'Gruntfile.js'
     },
@@ -45,5 +54,6 @@ module.exports = function(grunt) {
   });
   // Default task.
   grunt.registerTask('default', ['concat', 'uglify']);
+  grunt.registerTask('css', ['cssmin']);
 
 };

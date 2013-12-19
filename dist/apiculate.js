@@ -1,4 +1,4 @@
-/*! apiculate - v0.2.0 - 2013-12-18
+/*! apiculate - v0.2.0 - 2013-12-19
 * http://acreeser.github.io/apiculate/
 * Copyright (c) 2013 ; Licensed MIT */
 var apiculate = angular.module('apiculate',[]);
@@ -43,7 +43,7 @@ apiculate.directive('endpoint', ['$http', function($http) {
 				}
             };
         },
-		controller: function($scope){
+		controller: ['$scope', function($scope){
             $scope.paramFilter = function(param){
 				if (param.optional){
 					return param.example != param.apiDefault;
@@ -92,14 +92,14 @@ apiculate.directive('endpoint', ['$http', function($http) {
 				if (newValue)
 					$scope.getRaw();
 			});
-		},
+		}],
     }
 
 }]);
 //apiculate.factory('myService', function() {});
 
 
-function MainCtrl($scope) {
+apiculate.controller('MainCtrl', ['$scope','$location', function($scope, $location) {
 	
 	
 	if (!window.apiculate){
@@ -113,6 +113,16 @@ function MainCtrl($scope) {
 	if (window.apiculate.endpoints){
 			$scope.endpoints = window.apiculate.endpoints;
 	} else {
+		if ($location.absUrl().indexOf("index.inline.html") != -1){
+			$scope.endpoints = [	
+				{
+					url: "/index.inline.html",
+					method: 'GET',
+					description: "Fetches the apiculate inline file, which has all you need to get started with apiculate.",
+					host: "local",
+				},		
+			];
+		} else {
 			$scope.endpoints = [			
 				// {
 					// url: "/api/endpoint",
@@ -142,6 +152,7 @@ function MainCtrl($scope) {
 					host: "local",
 				}
 			];
+		}
 	}
 		
 	
@@ -190,4 +201,4 @@ function MainCtrl($scope) {
 	};
 	
 	$scope.methodFilter = 'all';
-}
+}]);

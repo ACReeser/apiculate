@@ -3,3 +3,33 @@ body{
 	max-width:800px;
 	margin: 20px auto 40px auto;
 }
+
+.glass{
+	border-radius: 35px;
+	color: green;
+	height: 77px;
+	left: 4px;
+	overflow: hidden;
+	position: absolute;
+	top: 9px;
+	width: 77px;
+	z-index: -2;
+}
+
+.logo{
+	text-align:center;
+	position:relative;
+}
+
+.logo .fa-search{
+	position:fixed;
+	font-size:8em;
+	top:4px;
+	right: 800px;
+}
+
+.magnify{
+	top: -60px;
+	left: -50px;
+	position: absolute;
+}

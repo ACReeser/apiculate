@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="apiculateDox">
 <head>
 	<meta charset="UTF-8">
 	
@@ -20,20 +20,22 @@
 	
 	<!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script> -->
 	<script type="text/javascript" src="http://code.angularjs.org/angular-1.0.1.js"></script>
-	
+	<script type="text/javascript" src="/javascripts/apiculateDox.js"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 	
 	<title>apiculate</title>
 </head>
-<body>
+<body ng-controller="MainCtrl">
 	<a href="https://github.com/ACReeser/apiculate"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
 	
 	<header>
-		<div class="logo">
+		<div class="logo"  ng-mousemove="overLeaf($event)">
 			<i class="fa fa-leaf fa-5x"></i>
 			<i class="fa fa-search fa-4x">
 				<span class="glass">
-					<i class="fa fa-leaf fa-2x magnify"></i>
+					<i class="fa fa-leaf fa-2x magnify">
+						<span class="background"></span>
+					</i>
 				</span>
 			</i>
 		</div>

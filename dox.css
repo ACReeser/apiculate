@@ -18,18 +18,32 @@ body{
 
 .logo{
 	text-align:center;
-	position:relative;
+	padding: 20px;
 }
 
 .logo .fa-search{
 	position:fixed;
 	font-size:8em;
 	top:4px;
-	right: 800px;
+	left: 800px;
+}
+
+.logo .fa-search:hover{
+	cursor:none;
 }
 
 .magnify{
 	top: -60px;
 	left: -50px;
 	position: absolute;
+}
+
+.background{
+	background-color:white;
+	height: 140%;
+	left: -20%;
+	position:absolute;
+	top: -20%;
+	width: 140%;
+	z-index: -2;
 }

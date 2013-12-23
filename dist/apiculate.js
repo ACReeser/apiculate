@@ -1,4 +1,4 @@
-/*! apiculate - v0.2.0 - 2013-12-19
+/*! apiculate - v0.2.0 - 2013-12-23
 * http://acreeser.github.io/apiculate/
 * Copyright (c) 2013 ; Licensed MIT */
 var apiculate = angular.module('apiculate',[]);
@@ -16,7 +16,7 @@ apiculate.directive('endpoint', ['$http', function($http) {
 				if ($scope.endpoint.host == "local"){
 					$scope.endpoint.callUrl = $scope.endpoint.viewUrl;
 				} else {
-					$scope.endpoint.callUrl = window.apiculate.hosts[$scope.endpoint.host]+$scope.endpoint.viewUrl;
+					$scope.endpoint.callUrl = window.apiculateConfig.hosts[$scope.endpoint.host]+$scope.endpoint.viewUrl;
 				}
 				
 				var hasParams = false;
@@ -102,16 +102,16 @@ apiculate.directive('endpoint', ['$http', function($http) {
 apiculate.controller('MainCtrl', ['$scope','$location', function($scope, $location) {
 	
 	
-	if (!window.apiculate){
-		window.apiculate = {};
+	if (!window.apiculateConfig){
+		window.apiculateConfig = {};
 	}
 	
-	if (window.apiculate.hosts){
+	if (window.apiculateConfig.hosts){
 	} else {
-		window.apiculate.hosts = {'local': 'localhost', 'default': 'localhost:1234'};
+		window.apiculateConfig.hosts = {'local': 'localhost', 'default': 'localhost:1234'};
 	}
-	if (window.apiculate.endpoints){
-			$scope.endpoints = window.apiculate.endpoints;
+	if (window.apiculateConfig.endpoints){
+			$scope.endpoints = window.apiculateConfig.endpoints;
 	} else {
 		if ($location.absUrl().indexOf("index.inline.html") != -1){
 			$scope.endpoints = [	

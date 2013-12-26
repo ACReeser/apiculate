@@ -4,9 +4,19 @@ body{
 	margin: 20px auto 40px auto;
 }
 
+h1{
+	text-align:center;
+	text-shadow: #ddd 2px 2px;
+	color: #2FAF2F;
+	font-size: 50px;
+}
+.centered{
+	text-align:center;
+}
+
 .glass{
 	border-radius: 35px;
-	color: green;
+	color: #2FAF2F;
 	height: 77px;
 	left: 4px;
 	overflow: hidden;
@@ -14,6 +24,10 @@ body{
 	top: 9px;
 	width: 77px;
 	z-index: -2;
+}
+
+.initial .glass{
+	display:none;
 }
 
 .logo{
@@ -31,6 +45,10 @@ body{
 .logo .fa-search:hover{
 	cursor:none;
 }
+.logo .fa-search.initial{
+	position:initial;
+	font-size:5em;
+}
 
 .magnify{
 	top: -60px;
@@ -46,4 +64,14 @@ body{
 	top: -20%;
 	width: 140%;
 	z-index: -2;
+}
+
+.hover-row{
+	padding-left: 29px;
+}
+li.active{
+	font-weight:bold;
+}
+.big-brace{
+	
 }

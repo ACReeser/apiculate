@@ -8,6 +8,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-html-smoosher');
   grunt.loadNpmTasks('grunt-useminPrepare');
   grunt.loadNpmTasks('grunt-usemin');
+  grunt.loadNpmTasks('grunt-contrib-compress');
   
   // Project configuration.
   grunt.initConfig({
@@ -78,9 +79,19 @@ module.exports = function(grunt) {
         dest: 'dist/index.html',
       },
     },
+	compress: {
+    main: {
+        options: {
+          archive: 'dist/apiculate-v<%= pkg.version %>.zip'
+        },
+        files: [
+          {src: ['dist/*'], dest: 'dist/', filter: 'isFile'}, // includes files in path
+        ]
+      }
+    }
   });
   // Default task.
   grunt.registerTask('default', ['concat', 'uglify']);
-  grunt.registerTask('release', ['copy:main', 'useminPrepare', 'usemin', 'smoosher']);
+  grunt.registerTask('release', ['copy:main', 'useminPrepare', 'usemin', 'smoosher', 'compress:main']);
 
 };

@@ -1,10 +1,13 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-html-smoosher');
+  grunt.loadNpmTasks('grunt-useminPrepare');
+  grunt.loadNpmTasks('grunt-usemin');
   
   // Project configuration.
   grunt.initConfig({
@@ -55,13 +58,29 @@ module.exports = function(grunt) {
 	smoosher: {
 	  all: {
 		files: {
-		  'dist/index.inline.html': 'src/index.html',
+		  'dist/index.inline.html': 'dist/index.html',
 		},
 	  },
 	},
+    useminPrepare: {
+      html: 'index.html',
+      options: {
+        dest: 'dist',
+	    root: "src"
+      },
+    },
+	usemin: {
+      html: 'dist/index.html',
+    },
+	copy: {
+      main: {
+        src: 'src/index.html',
+        dest: 'dist/index.html',
+      },
+    },
   });
   // Default task.
   grunt.registerTask('default', ['concat', 'uglify']);
-  grunt.registerTask('release', ['concat', 'uglify', 'cssmin', 'smoosher']);
+  grunt.registerTask('release', ['copy:main', 'useminPrepare', 'usemin', 'smoosher']);
 
 };

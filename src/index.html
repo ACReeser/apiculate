@@ -12,7 +12,9 @@
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
 
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<!-- build:css apiculate.min.css -->
 	<link rel="stylesheet" href="/css/apiculate.css">
+	<!-- endbuild -->
 </head>
 <body ng-app="apiculate">
 	<div ng-controller="MainCtrl" class="container">
@@ -103,9 +105,9 @@
 				<div class="endpoint-content row" ng-hide="endpoint.hide">
 					<div ng-class="{'col-md-10': !endpoint.calling || !endpoint.sampleResponse, 'col-md-6': endpoint.calling || endpoint.sampleResponse }">
 					  <div class="panel panel-primary" ng-show="endpoint.description">
-							<div class="panel-body">{{endpoint.description}}</div>
-						</div>
-					  <table ng-show="endpoint.pathParams.length > 0" class="row paths table">
+						<div class="panel-body">{{endpoint.description}}</div>
+					  </div>
+					  <table data-ng-show="endpoint.pathParams.length" class="row paths table">
 						  <thead>
 							  <tr>
 								  <th>Path Segment</th>
@@ -203,7 +205,11 @@
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 	<!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script> -->
 	<script src="http://code.angularjs.org/angular-1.0.1.js"></script>
+	
+	<!-- build:js apiculate.min.js -->
 	<script src="/js/apiculate.js"></script>
+	<!-- endbuild -->
+	
 	<!-- script>
 		//your apiculate script goes here
 	</script-->

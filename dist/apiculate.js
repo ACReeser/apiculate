@@ -1,6 +1,6 @@
-/*! apiculate - v0.2.0 - 2013-12-23
+/*! apiculate - v0.2.0 - 2014-01-02
 * http://acreeser.github.io/apiculate/
-* Copyright (c) 2013 ; Licensed MIT */
+* Copyright (c) 2014 ; Licensed MIT */
 var apiculate = angular.module('apiculate',[]);
 
 apiculate.directive('endpoint', ['$http', function($http) {

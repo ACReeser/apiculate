@@ -4,6 +4,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-html-smoosher');
   
   // Project configuration.
   grunt.initConfig({
@@ -50,10 +51,17 @@ module.exports = function(grunt) {
         files: '<%= jshint.gruntfile.src %>',
         tasks: ['jshint:gruntfile']
       }
-    }
+    },
+	smoosher: {
+	  all: {
+		files: {
+		  'dist/index.inline.html': 'src/index.html',
+		},
+	  },
+	},
   });
   // Default task.
   grunt.registerTask('default', ['concat', 'uglify']);
-  grunt.registerTask('css', ['cssmin']);
+  grunt.registerTask('release', ['concat', 'uglify', 'cssmin', 'smoosher']);
 
 };

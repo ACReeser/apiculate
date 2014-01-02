@@ -12,16 +12,16 @@
 	
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-	<link rel="stylesheet" href="/apiculate/dox.css">
-	<!-- <link rel="stylesheet" href="/dox.css"> -->
+	<!--<link rel="stylesheet" href="/apiculate/dox.css">-->
+	<link rel="stylesheet" href="/dox.css">
 	
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	
 	<!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script> -->
 	<script type="text/javascript" src="http://code.angularjs.org/angular-1.0.1.js"></script>
-	<script type="text/javascript" src="/apiculate/javascripts/apiculateDox.js"></script>
-	<!-- <script type="text/javascript" src="/javascripts/apiculateDox.js"></script> -->
+	<!--<script type="text/javascript" src="/apiculate/javascripts/apiculateDox.js"></script>-->
+	<script type="text/javascript" src="/javascripts/apiculateDox.js"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 	
 	<title>apiculate</title>
@@ -57,39 +57,77 @@
 				<li ng-class="{active: hoverIndex == 4}" ng-mouseover="hover(4)" ng-mouseleave="autohover()">Live query servers with parameters you supply</li>
 			</ul>
 			<div class="col-md-6 centered">
-				<div ng-show="hoverIndex == 1" class="big-brace fa-4x">{JSON}</div>
+				<div ng-show="hoverIndex == 1" class="fa-4x">{JSON}</div>
 				<i ng-show="hoverIndex == 2" class="fa fa-search fa-5x"></i>
 				<i ng-show="hoverIndex == 3" class="fa fa-filter fa-5x"></i>
-				<i ng-show="hoverIndex == 4" class="fa fa-cloud  fa-5x"></i>
+				<i ng-show="hoverIndex == 4" class="fa fa-cloud-download  fa-5x"></i>
 			</div>
 		</div>
 	</section>
 		
 	<section>
-		<h2>Demo</h2>
-		<p>View the <a href="/apiculate/demo/gist.html">Gist API</a> as an apiculate view</p>
-		<p>View the <a href="/apiculate/demo/apiculate.html">apiculate src</a> as an apiculate view</p>
+		<h2>Examples</h2>
+		<p>Demo the <a href="/apiculate/demo/gist.html">Gist API</a> as an apiculate view</p>
+		<p>Demo the <a href="/apiculate/demo/apiculate.html">apiculate src</a> as an apiculate view</p>
+	</section>
+	
+	<section>
+		<h2>Quick Start</h2>
+		<ol>
+			<li><a href="https://github.com/ACReeser/apiculate/releases/download/v0.2/apiculate-v0.2.0.zip">Download</a> the latest release of apiculate.</li> 
+			<li>Host the files on a server. There is an index.inline.html file that allows for easy hosting of apiculate.</li>
+			<li>Open up the index HTML file for editing.</li>
+			<li>Drop a <code>&lt;script&gt;</code> tag into the HTML file.</li>
+			<li>Write a global <a href="#configure">configuration</a> object to give apiculate your <a href="#endpoint">endpoint</a> data.</li>
+		</ol>
+		<h3>Example</h3>
+		<pre>
+			<code language="html">
+	&lt;!-- your script goes here--&gt;
+	&lt;script&gt;		
+		window.apiculateConfig = {
+		  //let's fill this with JSON!
+		  endpoints: [
+		    {
+		      method: "GET",
+			  url: "/index.html",
+			  params: [
+			    {
+				  key: "cachebuster",
+				  type: "Number",
+				  example: 5
+			    }
+			  ]
+		    }
+		  ]
+		};
+	&lt;/script&gt;
+			</code>
+		</pre>
 	</section>
 	
 	<section>
 		<h2>Documentation</h2>
-		<h3>Setup</h3>
-		<p>Configuring apiculate is easy: just drop in some JSON in a script in the <code>&lt;head&gt;</code> element.</p>
-		<pre>
-			<code language="html">
-			&lt;head&gt;
-				&lt;!-- your script goes here--&gt;
-				&lt;script&gt;		
-					window.apiculate.config = {
-						//let's fill this with JSON!
-					};
-				&lt;/script&gt;
-				
-			&lt;/head&gt;
-			</code>
-		</pre>
-		<p></p>
-		<h3></h3>
+		<h3 id="configure">The Configuration object</h3>
+		<p>The apiculateConfig object holds two important properties: <code>hosts</code> and <code>endpoints</code>.</p>
+		<h4>Hosts</h4>
+		<p>The hosts property is a dictionary of URLs keyed by identifiers. This dictionary is used to compose request URLs when live-querying endpoints.  Each endpoint can use any one of these identifiers.</p>
+		<p>By default, the hosts property is <code>{'local': 'localhost'}</code></p>
+		<h4>Endpoints</h4>
+		<p>The endpoints property is simply an array of endpoints.</p>
+		<h3 id="endpoint">The Endpoint object</h3>
+		<ul class="unstyled">
+			<li><code>method</code></li>
+			<li><code>url</code></li>
+			<li><code>host</code></li>
+			<li><code>description</code></li>
+			<li><code>auth</code></li>
+			<li><code>token</code></li>
+			<li><code>paths</code></li>
+			<li><code>params</code></li>
+		</ul>
+		<p>
+		</p>
 	</section>
 	
 </body>

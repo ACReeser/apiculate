@@ -46,8 +46,20 @@ Apiculate is a set of static files. Just host them on any server (like Mongoose)
 
 
 ## Contributing changes
+_Please open github issues_
 
-- _"Please open github issues"_
+### Dependencies
+Creating a release requires several Grunt plugins:
+- grunt-contrib-copy
+- grunt-contrib-concat
+- grunt-contrib-cssmin
+- grunt-contrib-uglify
+- grunt-contrib-compress
+- grunt-html-smoosher
+- grunt-useminPrepare
+- grunt-usemin
+
+After installing grunt and these plugins, run "grunt release" to minify, inline, and zip the source files.
 
 ## License
   MIT

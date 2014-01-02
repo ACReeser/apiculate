@@ -109,25 +109,118 @@
 	<section>
 		<h2>Documentation</h2>
 		<h3 id="configure">The Configuration object</h3>
-		<p>The apiculateConfig object holds two important properties: <code>hosts</code> and <code>endpoints</code>.</p>
-		<h4>Hosts</h4>
-		<p>The hosts property is a dictionary of URLs keyed by identifiers. This dictionary is used to compose request URLs when live-querying endpoints.  Each endpoint can use any one of these identifiers.</p>
-		<p>By default, the hosts property is <code>{'local': 'localhost'}</code></p>
-		<h4>Endpoints</h4>
-		<p>The endpoints property is simply an array of endpoints.</p>
+		<table class="table">
+			<tbody>
+				<tr>
+					<td><code>hosts</code></td>
+					<td>Object</td>
+					<td>
+						<p>The hosts property is a dictionary of URLs keyed by identifiers. This dictionary is used to compose request URLs when live-querying endpoints.  Each endpoint can use any one of these identifiers.</p>
+					</td>
+				</tr>
+				<tr>
+					<td><code>endpoints</code></td>
+					<td>Array</td>
+					<td>
+						<p>The endpoints property is simply an array of endpoints.</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 		<h3 id="endpoint">The Endpoint object</h3>
-		<ul class="unstyled">
-			<li><code>method</code></li>
-			<li><code>url</code></li>
-			<li><code>host</code></li>
-			<li><code>description</code></li>
-			<li><code>auth</code></li>
-			<li><code>token</code></li>
-			<li><code>paths</code></li>
-			<li><code>params</code></li>
-		</ul>
-		<p>
-		</p>
+		<table class="table">
+			<tbody>
+				<tr>
+					<td><code>method</code></td>
+					<td>String</td>
+					<td>
+				<p>The HTTP verb of the endpoint, e.g. GET or POST</p></td>
+				</tr>
+				<tr>
+					<td><code>url</code></td>
+					<td>String</td>
+					<td><p>The endpoint path. You can include dynamic parts of the path with the <code>paths</code> collection by including &lt;&lt;KEY&gt;&gt; in the string, where KEY is the identifier of the path.</p></td>
+				</tr>
+				<tr>
+					<td><code>paths</code></td>
+					<td>Object</td>
+					<td><p>This object maps an identifier to an object with data about dynamic parts of an endpoint's <code>path</code>. Each identifier maps to an object with a <code>description</code>,<code>type</code>, and an optional <code>values</code> property.</p>
+						<p>Valid types are:</p>
+						<ul>
+						  <li>Number</li>
+						  <li>Array</li>
+						  <li>String</li>
+						</ul>
+						<p>The <code>values</code> property is used for Array types, and needs to be an array of strings.</p></td>
+				</tr>
+				<tr>
+					<td><code>host</code></td>
+					<td>String</td>
+					<td><p>The host of this endpoint.  Defaults to 'local' which resolves to 'localhost'.  You can add additional hosts by modifying the <code>hosts</code> property of the apiculateConfig object.</p></td>
+				</tr>
+				<tr>
+					<td><code>description</code></td>
+					<td>String</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>token</code></td>
+					<td>Boolean</td>
+					<td><p>This is a 'filter-flag' and is false by default. This is meant to signify whether an endpoint requires authorization.</p></td>
+				</tr>
+				<tr>
+					<td><code>auth</code></td>
+					<td>Boolean</td>
+					<td><p>This is a 'filter-flag' and is false by default. This is meant to signify whether an endpoint accepts a token as authorization.</p></td>
+				</tr>
+				<tr>
+					<td><code>params</code></td>
+					<td>Array</td>
+					<td><p>This is a list of query parameters for this endpoint. Each entry is a <a href="#param">param object</a></p></td>
+				</tr>
+			</tbody>
+		</table>
+		<h3 id="param">The Parameter Object</h3>
+		<table class="table">
+			<tbody>
+				<tr>
+					<td><code>key</code></td>
+					<td>String</td>
+					<td>The key in the key-value-pair of the query parameter.</td>
+				</tr>
+				<tr>
+					<td><code>type</code></td>
+					<td>String</td>
+					<td>The type of value. Can be one of the following:
+						<ul>
+							<li>String</li>
+							<li>Number</li>
+							<li>Array</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td><code>apiDefault</code></td>
+					<td>String</td>
+					<td>What the server uses as a default when omitted.</td>
+				</tr>
+				<tr>
+					<td><code>description</code></td>
+					<td>String</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>values</code></td>
+					<td>Array</td>
+					<td>When the <code>type</code> is Array, this array contains possible values.</td>
+				</tr>
+				<tr>
+					<td><code>optional</code></td>
+					<td>Boolean</td>
+					<td>This is an indicator for whether or not the server requires this parameter.</td>
+				</tr>
+			</tbody>
+		</table>
 	</section>
 	
 </body>

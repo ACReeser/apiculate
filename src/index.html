@@ -85,7 +85,7 @@
 		  </a>
 		</div>
 	  </div>
-	  <div ng-repeat="endpoint in endpoints | filter:filter" class="animate-repeat">
+	  <div ng-repeat="endpoint in endpoints | filter:filter" class="animate-opacity">
 		  <div endpoint="endpoint" class="endpoint" ng-style="{'margin-left': endpoint.getOffset()}">
 			  <div class="">
 				<h3 class="row">
@@ -102,7 +102,7 @@
 					  <span class="btn btn-default" ng-click="endpoint.hide = !endpoint.hide"><i class="fa fa-eye" ng-show="endpoint.hide"></i><i class="fa fa-eye-slash" ng-show="!endpoint.hide"></i></span>
 				  </div>
 				</h3>	
-				<div class="endpoint-content row" ng-hide="endpoint.hide">
+				<div class="endpoint-content row animate-show" ng-hide="endpoint.hide">
 					<div ng-class="{'col-md-10': !endpoint.calling || !endpoint.sampleResponse, 'col-md-6': endpoint.calling || endpoint.sampleResponse }">
 					  <div class="panel panel-primary" ng-show="endpoint.description">
 						<div class="panel-body">{{endpoint.description}}</div>

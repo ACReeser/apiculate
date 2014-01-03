@@ -141,27 +141,44 @@ h3.row{
 	left: -61px;
 }
  
-.animate-repeat {
+.animate-opacity {
 }
  
-.animate-repeat.ng-move,
-.animate-repeat.ng-enter,
-.animate-repeat.ng-leave {
+.animate-opacity.ng-move,
+.animate-opacity.ng-enter,
+.animate-opacity.ng-leave {
   -webkit-transition:all linear 0.5s;
   transition:all linear 0.5s;
 }
  
-.animate-repeat.ng-leave.ng-leave-active,
-.animate-repeat.ng-move,
-.animate-repeat.ng-enter {
+.animate-opacity.ng-leave.ng-leave-active,
+.animate-opacity.ng-move,
+.animate-opacity.ng-enter {
   opacity:0;
   max-height:0;
 }
  
-.animate-repeat.ng-leave,
-.animate-repeat.ng-move.ng-move-active,
-.animate-repeat.ng-enter.ng-enter-active {
+.animate-opacity.ng-leave,
+.animate-opacity.ng-move.ng-move-active,
+.animate-opacity.ng-enter.ng-enter-active {
   opacity:1;
   max-height:100%;
+}
+
+.animate-show {
+  -webkit-transition:all ease-in 0.15s;
+  transition:all ease-in 0.15s;
+  opacity:1;
+}
+
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove {
+  display:block!important;
+}
+ 
+.animate-show.ng-hide {
+  line-height:0;
+  opacity:0;
+  padding:0px!important;
 }
 

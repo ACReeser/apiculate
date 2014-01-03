@@ -119,8 +119,16 @@
 							  <tr ng-repeat="path in endpoint.pathParams">
 								  <td>{{path.key}}</td>
 								  <td>
-									  <input type="text" ng-model="path.example" ng-change="refreshUrl()" ng-hide="path.type == 'Number'"/>
+									  <input type="text" ng-model="path.example" ng-change="refreshUrl()" ng-show="path.type == 'String'"/>
 									  <input type="number" ng-model="path.example" ng-change="refreshUrl()"  ng-show="path.type == 'Number'"/>
+									  <div class="btn-group" ng-show="path.type == 'Array'">
+										<a data-toggle="dropdown" class="btn btn-default dropdown-toggle">{{path.example}}&nbsp;<span class="caret"></span></a>
+										<ul class="dropdown-menu" role="menu">
+											<li ng-repeat="val in path.values">
+												<a ng-click="path.example = val; refreshUrl()">{{val}}</a>
+											</li>
+										</ul>
+									  </div>
 								  </td>
 								  <td class="desc">{{path.description}}</td>
 							  </tr>

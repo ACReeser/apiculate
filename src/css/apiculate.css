@@ -64,7 +64,9 @@ h3.row{
 	display:inline-block;
 	opacity: 0;
 }
-
+.centered{
+	text-align:center;
+}
 .controls .dropdown.dd-token{
   -webkit-transition: opacity .15s ease;
      -moz-transition: opacity .15s ease;

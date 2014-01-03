@@ -1,4 +1,4 @@
-var apiculate = angular.module('apiculate',[]);
+var apiculate = angular.module('apiculate',['ngAnimate']);
 
 apiculate.directive('endpoint', ['$http', function($http) {
     return {
@@ -8,7 +8,9 @@ apiculate.directive('endpoint', ['$http', function($http) {
         //template:"<div><h3>{{endpoint.url}}</h3></div>",
         link: function ($scope, $element, $attrs){
             
-            $scope.call = function(){
+			//ok, i confess, this really shouldn't be a directive. at one point yes, but now the design has significantly moved
+			//i'll refactor it down the line
+            $scope.endpoint.call = function(){
 				$scope.endpoint.calling = true;
 				
 				//default to localhost
@@ -168,7 +170,7 @@ apiculate.controller('MainCtrl', ['$scope','$location', function($scope, $locati
 	};
 	
 	angular.forEach($scope.endpoints, function(end){
-		end.depth = end.url.split("/").length -3;
+		end.depth = end.url.split("/").length - 2;
 		end.viewUrl = end.url;
 		end.searchField = (end.url + " " + end.method + " " + end.description).toLowerCase();
 		end.pathParams = [];

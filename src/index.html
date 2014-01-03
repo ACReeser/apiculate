@@ -85,7 +85,7 @@
 		  </a>
 		</div>
 	  </div>
-	  <div ng-repeat="endpoint in endpoints | filter:filter">
+	  <div ng-repeat="endpoint in endpoints | filter:filter" class="animate-repeat">
 		  <div endpoint="endpoint" class="endpoint" ng-style="{'margin-left': endpoint.getOffset()}">
 			  <div class="">
 				<h3 class="row">
@@ -98,7 +98,7 @@
 					</span>
 				  </span>	
 				  <div class="pull-right">
-					  <span class="btn btn-default" ng-click="call()" ng-show="endpoint.method.toLowerCase() == 'get'"><i class="fa fa-cloud-upload"></i> Call</span>
+					  <span class="btn btn-default" ng-click="endpoint.call()" ng-show="endpoint.method.toLowerCase() == 'get'"><i class="fa fa-cloud-upload"></i> Call</span>
 					  <span class="btn btn-default" ng-click="endpoint.hide = !endpoint.hide"><i class="fa fa-eye" ng-show="endpoint.hide"></i><i class="fa fa-eye-slash" ng-show="!endpoint.hide"></i></span>
 				  </div>
 				</h3>	
@@ -219,8 +219,9 @@
 	</div>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-	<!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script> -->
-	<script src="http://code.angularjs.org/angular-1.0.1.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
+    <script src="http://code.angularjs.org/1.2.7/angular-animate.min.js"></script>
+	<!--<script src="http://code.angularjs.org/angular-1.0.1.js"></script> -->
 	
 	<!-- build:js apiculate.min.js -->
 	<script src="/js/apiculate.js"></script>

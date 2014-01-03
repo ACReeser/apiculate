@@ -5,7 +5,9 @@ body{
 	height: 101%;
 	padding:4% 8% 8% 8%;
 }
-
+.endpoint{
+	position:relative;
+}
 .endpoint h3{ 
 	font-size: 2em;
 	position:relative;
@@ -129,6 +131,14 @@ h3.row{
 
 .fa-hdd-o{
 	cursor:pointer;
+}
+
+.show-group{
+	position:absolute;
+	min-width:22px;
+	max-width:22px;
+	top: 11px;
+	left: -61px;
 }
 
 

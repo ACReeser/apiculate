@@ -10,6 +10,11 @@ apiculate.directive('endpoint', ['$http', function($http) {
             
             $scope.call = function(){
 				$scope.endpoint.calling = true;
+				
+				//default to localhost
+				if ($scope.endpoint.host == null)
+					$scope.endpoint.host = "local";
+					
 				if ($scope.endpoint.host == "local"){
 					$scope.endpoint.callUrl = $scope.endpoint.viewUrl;
 				} else {
@@ -152,10 +157,18 @@ apiculate.controller('MainCtrl', ['$scope','$location', function($scope, $locati
 		}
 	}
 		
+	//we want our endpoints to be sorted so that we can group them by route
+	$scope.endpoints.sort(function(a, b){
+		return a.url > b.url;
+	});
 	
-	
+	//we hide the coefficient inside this object so our child lookup works correctly. I'ts an angular thing
+	$scope.grouping = {
+		coef: -1
+	};
 	
 	angular.forEach($scope.endpoints, function(end){
+		end.depth = end.url.split("/").length -3;
 		end.viewUrl = end.url;
 		end.searchField = (end.url + " " + end.method + " " + end.description).toLowerCase();
 		end.pathParams = [];
@@ -169,6 +182,9 @@ apiculate.controller('MainCtrl', ['$scope','$location', function($scope, $locati
 				if (!param.example)
 					param.example = param.apiDefault;
 		});
+		end.getOffset = function(){
+			return ((end.depth * 25) * ($scope.grouping.coef + 1)) + 'px';
+		};
 	});
 	
 	$scope.filter = function(endpoint){
@@ -189,7 +205,13 @@ apiculate.controller('MainCtrl', ['$scope','$location', function($scope, $locati
 		} else {
 			return true;
 		}
-	}
+	};
+	
+	$scope.checkParents = function(){
+		angular.forEach($scope.endpoints, function(end){
+			
+		});
+	};
 	
 	$scope.hideAll = function(hide){
 		angular.forEach($scope.endpoints, function(e){

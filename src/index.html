@@ -20,7 +20,7 @@
 	<div ng-controller="MainCtrl" class="container">
 	  <div class="row tools">
 		<div class="col-md-5 input-group">
-		 <input type="text" class="form-control" data-ng-model="query">	
+		 <input type="text" class="form-control" data-ng-model="query" ng-change="checkParents()">	
 		 <span class="input-group-addon">
 		   <i class="fa fa-search"></i>
 		 </span>
@@ -73,10 +73,10 @@
 		</div>
 		
 	    <div class="pull-right btn-group">
-		  <!--a ng-click="group = !group" data-toggle="button" class="btn btn-default">
-			<span ng-show="group" ><i class="fa fa-sitemap"></i>&nbsp;Grouped</span>
-			<span ng-show="!group"><i class="fa fa-square"></i>&nbsp;Ungrouped</span>
-		  </a-->
+		  <a ng-click="grouping.coef = grouping.coef * -1" data-toggle="button" class="btn btn-default">
+			<span ng-show="grouping.coef == 1" ><i class="fa fa-sitemap"></i>&nbsp;Grouped</span>
+			<span ng-show="grouping.coef == -1"><i class="fa fa-square"></i>&nbsp;Ungrouped</span>
+		  </a>
 		  <a ng-click="hideAll(true)" class="btn btn-default">
 		    <i class="fa fa-compress"></i>&nbsp;Collapse All
 		  </a>
@@ -86,7 +86,7 @@
 		</div>
 	  </div>
 	  <div ng-repeat="endpoint in endpoints | filter:filter">
-		  <div endpoint="endpoint" class="endpoint">
+		  <div endpoint="endpoint" class="endpoint" ng-style="{'margin-left': endpoint.getOffset()}">
 			  <div class="">
 				<h3 class="row">
 				  <span class="col-md-1">
@@ -206,6 +206,11 @@
 					</div>	
 				  </div>              
 			  </div>
+			  <!--div class="show-group" ng-show="(endpoint.depth > 0 && $parent.grouping.coef == 1) || endpoint.hasGroupMissing">
+				<a ng-click="showGroup(endpoint)" class="btn btn-default">
+					<i class="fa fa-eye" ></i>
+				</a>
+			  </div-->
 		  </div>
 	  </div>
 	  <div ng-show="(endpoints | filter:filter).length == 0" class="centered">
@@ -221,8 +226,9 @@
 	<script src="/js/apiculate.js"></script>
 	<!-- endbuild -->
 	
-	<!-- script>
+	<!--script>
 		//your apiculate script goes here
+		
 	</script-->
 </body>
 </html>

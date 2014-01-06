@@ -6,7 +6,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-html-smoosher');
-  grunt.loadNpmTasks('grunt-useminPrepare');
+  //grunt.loadNpmTasks('grunt-useminPrepare');
   grunt.loadNpmTasks('grunt-usemin');
   grunt.loadNpmTasks('grunt-contrib-compress');
   
@@ -92,6 +92,6 @@ module.exports = function(grunt) {
   });
   // Default task.
   grunt.registerTask('default', ['concat', 'uglify']);
-  grunt.registerTask('release', ['copy:main', 'useminPrepare', 'usemin', 'smoosher', 'compress:main']);
+  grunt.registerTask('release', ['copy:main', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin', 'smoosher', 'compress:main']);
 
 };

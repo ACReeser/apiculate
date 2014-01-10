@@ -12,9 +12,11 @@
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
 
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	
 	<!-- build:css apiculate.min.css -->
 	<link rel="stylesheet" href="/css/apiculate.css">
 	<!-- endbuild -->
+
 </head>
 <body ng-app="apiculate">
 	<div ng-controller="MainCtrl" class="container">
@@ -119,13 +121,13 @@
 							  <tr ng-repeat="path in endpoint.pathParams">
 								  <td>{{path.key}}</td>
 								  <td>
-									  <input type="text" ng-model="path.example" ng-change="refreshUrl()" ng-show="path.type == 'String'"/>
-									  <input type="number" ng-model="path.example" ng-change="refreshUrl()"  ng-show="path.type == 'Number'"/>
+									  <input type="text" ng-model="path.example" ng-change="endpoint.refreshUrl()" ng-show="path.type == 'String'"/>
+									  <input type="number" ng-model="path.example" ng-change="endpoint.refreshUrl()"  ng-show="path.type == 'Number'"/>
 									  <div class="btn-group" ng-show="path.type == 'Array'">
 										<a data-toggle="dropdown" class="btn btn-default dropdown-toggle">{{path.example}}&nbsp;<span class="caret"></span></a>
 										<ul class="dropdown-menu" role="menu">
 											<li ng-repeat="val in path.values">
-												<a ng-click="path.example = val; refreshUrl()">{{val}}</a>
+												<a ng-click="path.example = val; endpoint.refreshUrl()">{{val}}</a>
 											</li>
 										</ul>
 									  </div>
@@ -176,7 +178,7 @@
 							</p>
 						</div>
 						<div class="row col-md-12">
-							<code>{{endpoint.sampleResponse.body}}</code>
+							<code><pre>{{endpoint.sampleResponse.body}}</pre></code>
 						</div>
 					</div>
 					<div class="col-md-6" ng-show="endpoint.calling">
@@ -194,7 +196,7 @@
 							</div>
 						</div>
 						<div ng-hide="endpoint.raw">
-							<iframe src="{{endpoint.callUrl}}" style="width:100%;" height="300" frameborder="0"></iframe>
+							<iframe ng-src="{{endpoint.callUrl}}" style="width:100%;" height="300" frameborder="0"></iframe>
 						</div>
 						<div ng-show="endpoint.raw">
 							<p>{{endpoint.rawResponse}}</p>
@@ -220,16 +222,15 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
-    <script src="http://code.angularjs.org/1.2.7/angular-animate.min.js"></script>
-	<!--<script src="http://code.angularjs.org/angular-1.0.1.js"></script> -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-animate.min.js"></script>
 	
 	<!-- build:js apiculate.min.js -->
 	<script src="/js/apiculate.js"></script>
 	<!-- endbuild -->
 	
 	<!--script>
-		//your apiculate script goes here
-		
+		//your apiculate script goes here		
 	</script-->
+
 </body>
 </html>

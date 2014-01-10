@@ -1,6 +1,9 @@
+/*! apiculate - v0.3 - 2014-01-06
+* http://acreeser.github.io/apiculate/
+* Copyright (c) 2014 ; Licensed MIT */
 var apiculate = angular.module('apiculate',['ngAnimate']);
 
-apiculate.directive('endpoint', ['$http', function($http) {
+apiculate.directive('endpoint', ['$http', '$sce', function($http, $sce) {
     return {
         scope:{            
             endpoint: "=endpoint"        
@@ -41,6 +44,7 @@ apiculate.directive('endpoint', ['$http', function($http) {
 					}
 				});
 				
+				$scope.endpoint.callUrl = $sce.trustAsResourceUrl($scope.endpoint.callUrl);
 				$scope.endpoint.rawStatus = null;
 				if ($scope.endpoint.raw){
 					$scope.getRaw();
@@ -57,7 +61,7 @@ apiculate.directive('endpoint', ['$http', function($http) {
 					return param.example;
 				}
             };
-			$scope.refreshUrl = function(){
+			$scope.endpoint.refreshUrl = function(){
 				var urlPaths = $scope.endpoint.paths; 
 				var newUrl = $scope.endpoint.url;
 				
